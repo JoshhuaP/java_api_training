@@ -6,10 +6,6 @@ import org.everit.json.schema.loader.SchemaLoader;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 public class JsonParser {
     final JSONObject jsonSchema;

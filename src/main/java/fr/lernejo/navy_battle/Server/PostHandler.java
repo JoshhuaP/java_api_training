@@ -8,13 +8,28 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 
 public class PostHandler implements HttpHandler {
+    final String url;
+    public PostHandler(String url) {
+        this.url = url;
+    }
+
     public final void handle(HttpExchange t) throws IOException {
         int status = 0;
         String response = "";
         try {
+            if (url != null) {
+                HttpClient newClient = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:9876/api/game/start"))
+                    .POST(HttpRequest.BodyPublishers.ofString("Start"))
+                    .build();
+            }
             if (t.getRequestMethod().equals("POST")) {
                 InputStream is = t.getRequestBody();
                 JsonParser Parser = new JsonParser();
@@ -29,7 +44,7 @@ public class PostHandler implements HttpHandler {
             }
             else {
                 status = 404;
-                response = "Method not allowed";
+                response = "Not Found";
             }
         }
         catch (Exception e) {
