@@ -23,16 +23,20 @@ public class JsonParserTest {
     }
 
     @org.junit.jupiter.api.Test
-    void TestJsonParser() {
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream("StratingGame.json");
-        Assertions.assertEquals(jsonSchema, new JSONObject(new JSONTokener(Objects.requireNonNull(is))));
-        Assertions.assertThrows(IllegalArgumentException.class, this::TestJsonParser);
+    void TestJsonParser() throws IOException {
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("StratingGameTest.json");
+        try(is) {
+            this.jsonSchema = new JSONObject(new JSONTokener(is));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Assertions.assertEquals(jsonSchema, new JSONObject(new JSONTokener((is))));
     }
 
     @org.junit.jupiter.api.Test
-    public final void testParser(InputStream inputStream) {
-        JSONObject requestJson = new JSONObject(new JSONTokener(inputStream));
-        Assertions.assertEquals(jsonParser.Parser(inputStream), requestJson);
-        Assertions.assertThrows(IllegalArgumentException.class, ()->jsonParser.Parser(inputStream));
+    public final void testParser() {
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("StratingGameTest.json");
+        JSONObject requestJson = new JSONObject(new JSONTokener(is));
+        Assertions.assertEquals(jsonParser.Parser(is), requestJson);
     }
 }

@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Assertions;
 
 public class LauncherTest {
     @org.junit.jupiter.api.Test
-    public final void mainTest(String[] args) {
-        final int port = Integer.parseInt(args[0]);
-        final String url = args[1];
+    public final void mainTest() {
+        final int port = 9876;
+        final String url = "http://localhost:9876/api/game/start/";
         WebServer server = new WebServer(port, url);
-        Assertions.assertEquals(port, Integer.parseInt(args[0]));
-        Assertions.assertNotEquals(url, args[1]);
+        Assertions.assertEquals(port, 9876);
+        Assertions.assertEquals(url, "http://localhost:9876/api/game/start/");
     }
 }

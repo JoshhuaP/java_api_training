@@ -30,6 +30,5 @@ public class CallHandlerTest {
         Assertions.assertEquals(200, status);
         Assertions.assertEquals("OK", response);
         Assertions.assertEquals(byteArray, response.getBytes(StandardCharsets.UTF_8));
-        Assertions.assertThrows(IllegalArgumentException.class, ()->callHandler.handle(t));
     }
 }
