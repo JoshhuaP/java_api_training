@@ -19,16 +19,23 @@ public class PostHandler implements HttpHandler {
         this.url = url;
     }
 
+    /*public final int statusReturn() {
+    }*/
+
+    public final void HttpClient() {
+        HttpClient newClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("http://localhost:9876/api/game/start"))
+            .POST(HttpRequest.BodyPublishers.ofString("Start"))
+            .build();
+    }
+
     public final void handle(HttpExchange t) throws IOException {
         int status = 0;
         String response = "";
         try {
             if (url != null) {
-                HttpClient newClient = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:9876/api/game/start"))
-                    .POST(HttpRequest.BodyPublishers.ofString("Start"))
-                    .build();
+                this.HttpClient();
             }
             if (t.getRequestMethod().equals("POST")) {
                 InputStream is = t.getRequestBody();

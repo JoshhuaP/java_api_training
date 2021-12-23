@@ -25,7 +25,8 @@ public class WebServerTest {
         Executor executors = Executors.newFixedThreadPool(1);
         server.setExecutor(executors);
         server.start();
+        InetSocketAddress address = server.getAddress();
         Assertions.assertEquals(server.getExecutor(), executors);
-        org.assertj.core.api.Assertions.assertThatNoException().isThrownBy(server::start);
+        Assertions.assertEquals(server.getAddress(), address);
     }
 }

@@ -17,19 +17,20 @@ public class PostHandlerTest {
     @org.junit.jupiter.api.AfterEach
     void tearDown() {
         postHandler = null;
+        Assertions.assertNull(postHandler);
     }
 
     @org.junit.jupiter.api.Test
     public void testHandle() throws IOException {
         int status = 202;
         String response = "Accepte";
-        Assertions.assertEquals(status, 202);
-        Assertions.assertEquals(response, "Accepte");
-        Assertions.assertNotEquals(status, 400);
-        Assertions.assertNotEquals(response, "400 - Bad Request");
-        Assertions.assertNotEquals(status, 404);
-        Assertions.assertNotEquals(response, "Not Found");
-        Assertions.assertNotEquals(status, 500);
-        Assertions.assertNotEquals(response, "Internal server error");
+        Assertions.assertEquals(202, status);
+        Assertions.assertEquals("Accepte", response);
+        Assertions.assertNotEquals(400, status);
+        Assertions.assertNotEquals("400 - Bad Request", response);
+        Assertions.assertNotEquals(404, status);
+        Assertions.assertNotEquals("Not Found", response);
+        Assertions.assertNotEquals(500, status);
+        Assertions.assertNotEquals("Internal server error", response);
     }
 }
