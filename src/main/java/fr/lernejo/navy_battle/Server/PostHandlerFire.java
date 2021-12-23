@@ -1,7 +1,8 @@
 package fr.lernejo.navy_battle.Server;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import fr.lernejo.navy_battle.Json.JsonParser;
+import fr.lernejo.navy_battle.Json.JsonParserFire;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -17,8 +18,8 @@ public class PostHandlerFire implements HttpHandler {
     public final void HttpClient() {
         HttpClient newClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("http://localhost:9876/api/game/start"))
-            .POST(HttpRequest.BodyPublishers.ofString("Start"))
+            .uri(URI.create("http://localhost:9876/api/game/fire"))
+            .POST(HttpRequest.BodyPublishers.ofString("Fire"))
             .build();
     }
 
@@ -28,7 +29,7 @@ public class PostHandlerFire implements HttpHandler {
         String[] arr = new String[2];;
         if (url != null) {this.HttpClient();}
         if (t.getRequestMethod().equals("GET")) {
-            if (new JsonParser().Parser(t.getRequestBody()) != null) {status = 202;response = "true";}
+            if (new JsonParserFire().Parser(t.getRequestBody()) != null) {status = 202;response = "true";}
             else { status = 400; response = "false";}
         }
         else { status = 404; response = "Not Found";}

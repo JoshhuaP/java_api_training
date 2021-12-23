@@ -28,5 +28,8 @@ public class WebServerTest {
         InetSocketAddress address = server.getAddress();
         Assertions.assertEquals(server.getExecutor(), executors);
         Assertions.assertEquals(server.getAddress(), address);
+        Assertions.assertNotNull(addr);
+        Assertions.assertNotNull(server);
+        Assertions.assertNotNull(executors);
     }
 }

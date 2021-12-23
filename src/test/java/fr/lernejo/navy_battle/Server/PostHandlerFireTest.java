@@ -5,19 +5,19 @@ import org.junit.jupiter.api.Assertions;
 
 import java.io.IOException;
 
-public class PostHandlerTest {
-    PostHandler postHandler;
+public class PostHandlerFireTest {
+    PostHandlerFire postHandlerFire;
     private String url;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() throws IOException {
-        postHandler = new PostHandler(url);
+        PostHandlerFire postHandlerFire = new PostHandlerFire(url);
     }
 
     @org.junit.jupiter.api.AfterEach
     void tearDown() {
-        postHandler = null;
-        Assertions.assertNull(postHandler);
+        postHandlerFire = null;
+        Assertions.assertNull(postHandlerFire);
     }
     @org.junit.jupiter.api.Test
     public void testHandle() throws IOException {
