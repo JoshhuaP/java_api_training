@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 public class PostHandler implements HttpHandler {
     final String url;
     public PostHandler(String url) {this.url = url;}
-    public final void cleanup(OutputStream os) throws IOException {os.close();}
     public final void HttpClient() {
         HttpClient newClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -22,7 +21,7 @@ public class PostHandler implements HttpHandler {
     public final String[] ArrayResponse(HttpExchange t) throws IOException {
         int status;
         String response;
-        String[] arr = new String[2];;
+        String[] arr = new String[2];
         if (url != null) {this.HttpClient();}
         if (t.getRequestMethod().equals("POST")) {
             if (new JsonParser().Parser(t.getRequestBody()) != null) {status = 202;response = "true";}
@@ -41,15 +40,9 @@ public class PostHandler implements HttpHandler {
             status = Integer.parseInt(arr[0]);
             response = arr[1];
         }
-        catch (Exception e) {
-            status = 500;
-            response = "internal server error";
-            e.printStackTrace();
-        }
+        catch (Exception e) {status = 500; response = "internal server error"; e.printStackTrace();}
         t.sendResponseHeaders(status, response.getBytes(StandardCharsets.UTF_8).length);
         OutputStream os = t.getResponseBody();
         os.write(response.getBytes(StandardCharsets.UTF_8));
-        os.flush();
-        this.cleanup(os);
     }
 }
