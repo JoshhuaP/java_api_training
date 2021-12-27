@@ -20,7 +20,7 @@ public class WebServerTest {
 
     @org.junit.jupiter.api.Test
     final void createServerTest() throws IOException {
-        InetSocketAddress addr = new InetSocketAddress(9876);
+        InetSocketAddress addr = new InetSocketAddress(10000);
         HttpServer server = HttpServer.create(addr, 0);
         Executor executors = Executors.newFixedThreadPool(1);
         server.setExecutor(executors);

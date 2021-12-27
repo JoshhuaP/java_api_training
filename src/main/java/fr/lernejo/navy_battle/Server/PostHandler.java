@@ -42,7 +42,6 @@ public class PostHandler implements HttpHandler {
         }
         catch (Exception e) {status = 500; response = "internal server error"; e.printStackTrace();}
         t.sendResponseHeaders(status, response.getBytes(StandardCharsets.UTF_8).length);
-        OutputStream os = t.getResponseBody();
-        os.write(response.getBytes(StandardCharsets.UTF_8));
+        try (OutputStream os = t.getResponseBody()) {os.write(response.getBytes(StandardCharsets.UTF_8));}
     }
 }
