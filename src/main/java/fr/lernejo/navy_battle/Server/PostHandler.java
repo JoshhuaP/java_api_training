@@ -2,6 +2,8 @@ package fr.lernejo.navy_battle.Server;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import fr.lernejo.navy_battle.Json.JsonParser;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -10,7 +12,8 @@ import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 public class PostHandler implements HttpHandler {
     final String url;
-    public PostHandler(String url) {this.url = url;}
+    final int port;
+    public PostHandler(int port, String url) {this.port = port; this.url = url;}
     public final void HttpClient() {
         HttpClient newClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -24,7 +27,8 @@ public class PostHandler implements HttpHandler {
         String[] arr = new String[2];
         if (url != null) {this.HttpClient();}
         if (t.getRequestMethod().equals("POST")) {
-            if (new JsonParser().Parser(t.getRequestBody()) != null) {status = 202;response = "true";}
+            JSONObject jsonObject = new JsonParser().Parser(t.getRequestBody());
+            if (jsonObject != null) {status = 202;response = "{\"id\": \"1\",\"message\": \"leMessage\", \"url\": \"http://localhost:"+port+"\"}";}
             else { status = 400; response = "false";}
         }
         else { status = 404; response = "Not Found";}

@@ -7,11 +7,12 @@ import java.io.IOException;
 
 public class PostHandlerTest {
     PostHandler postHandler;
+    private int port;
     private String url;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() throws IOException {
-        postHandler = new PostHandler(url);
+        postHandler = new PostHandler(port, url);
     }
 
     @org.junit.jupiter.api.AfterEach
