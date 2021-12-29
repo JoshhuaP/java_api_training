@@ -27,7 +27,6 @@ public class WebServer {
             server.setExecutor(Executors.newFixedThreadPool(1));
             server.createContext("/ping", new CallHandler());
             server.createContext("/api/game/start", new PostHandler(port, url));
-            server.createContext("/api/game/fire", new PostHandlerFire(url));
             server.start();
         } catch (IOException e) {
             e.printStackTrace();

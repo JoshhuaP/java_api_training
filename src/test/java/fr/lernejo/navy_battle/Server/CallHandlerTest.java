@@ -2,6 +2,7 @@ package fr.lernejo.navy_battle.Server;
 
 import com.sun.net.httpserver.HttpExchange;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 public class CallHandlerTest {
     CallHandler callHandler;
+    HttpExchange t;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() throws IOException {
@@ -21,10 +23,9 @@ public class CallHandlerTest {
     }
 
     @org.junit.jupiter.api.Test
-    public void testHandle() throws IOException {
+    public void testHandle() {
         int status = 200;
         String response = "OK";
-        byte[] byteArray =  response.getBytes(StandardCharsets.UTF_8);
         Assertions.assertEquals(status, 200);
         Assertions.assertEquals(response, "OK");
     }

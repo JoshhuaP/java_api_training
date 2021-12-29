@@ -2,13 +2,16 @@ package fr.lernejo.navy_battle.Server;
 
 import com.sun.net.httpserver.HttpExchange;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class PostHandlerTest {
     PostHandler postHandler;
     private int port;
     private String url;
+    private HttpExchange httpExchange;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() throws IOException {
@@ -33,5 +36,10 @@ public class PostHandlerTest {
         Assertions.assertNotEquals("Not Found", response);
         Assertions.assertNotEquals(500, status);
         Assertions.assertNotEquals("Internal server error", response);
+    }
+
+    @Test
+    public void HttpServer_test() {
+        Assertions.assertDoesNotThrow(()->postHandler.HttpClient());
     }
 }
