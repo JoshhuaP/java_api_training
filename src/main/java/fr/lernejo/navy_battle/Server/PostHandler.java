@@ -18,7 +18,7 @@ public class PostHandler implements HttpHandler {
         HttpClient newClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create("http://localhost:9876/api/game/start"))
-            .POST(HttpRequest.BodyPublishers.ofString("Start"))
+            .POST(HttpRequest.BodyPublishers.ofString("{\"id\": \"1\",\"message\": \"leMessage\", \"url\": \"http://localhost:"+port+"\"}"))
             .build();
     }
     public final String[] ArrayResponse(HttpExchange t) throws IOException {

@@ -3,9 +3,9 @@ package fr.lernejo.navy_battle.Server;
 import com.sun.net.httpserver.HttpExchange;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class PostHandlerTest {
     PostHandler postHandler;
@@ -22,6 +22,7 @@ public class PostHandlerTest {
     void tearDown() {
         postHandler = null;
         Assertions.assertNull(postHandler);
+        Assertions.assertNull(httpExchange);
     }
     @org.junit.jupiter.api.Test
     public void testHandle() throws IOException {
@@ -41,5 +42,23 @@ public class PostHandlerTest {
     @Test
     public void HttpServer_test() {
         Assertions.assertDoesNotThrow(()->postHandler.HttpClient());
+    }
+
+    @Test
+    public void handle_nullPointer_test() {
+        NullPointerException thrown = assertThrows(
+            NullPointerException.class,
+            () -> postHandler.handle(httpExchange),
+            "Expected doThing() to throw, but it didn't"
+        );
+    }
+
+    @Test
+    public void ArrayResponse_nullPointer_test() {
+        NullPointerException thrown = assertThrows(
+            NullPointerException.class,
+            () -> postHandler.ArrayResponse(httpExchange),
+            "Expected doThing() to throw, but it didn't"
+        );
     }
 }
