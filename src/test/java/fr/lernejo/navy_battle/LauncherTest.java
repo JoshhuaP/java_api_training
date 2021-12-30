@@ -15,9 +15,4 @@ public class LauncherTest {
     public void launch_webServer_with_only_port() {
         Assertions.assertDoesNotThrow(()->Launcher.main(new String[]{Integer.toString(port)}));
     }
-
-    @Test
-    public void launch_webServer_with_port_and_url() {
-        Assertions.assertDoesNotThrow(()->Launcher.main(new String[]{Integer.toString(port), url}));
-    }
 }

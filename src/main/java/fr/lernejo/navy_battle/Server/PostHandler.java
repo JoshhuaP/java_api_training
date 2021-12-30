@@ -16,14 +16,18 @@ public class PostHandler implements HttpHandler {
     final int port;
     public PostHandler(int port, String url) {this.port = port; this.url = url;}
     public final void HttpClient() throws IOException, InterruptedException {
-        final HttpResponse<String> response;
-        final HttpClient newClient = HttpClient.newHttpClient();
-        final HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url+"/api/game/start"))
-            .POST(HttpRequest.BodyPublishers.ofString("{\"id\": \"1\",\"message\": \"leMessage\", \"url\": \"http://localhost:"+port+"\"}"))
-            .build();
-        response = newClient.send(request, HttpResponse.BodyHandlers.ofString());
-        if (response.statusCode() != 202) {throw new IllegalStateException("Server has not accepted start");}
+        if(url != null) {
+            final HttpResponse<String> response;
+            final HttpClient newClient = HttpClient.newHttpClient();
+            final HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url + "/api/game/start"))
+                .POST(HttpRequest.BodyPublishers.ofString("{\"id\": \"1\",\"message\": \"leMessage\", \"url\": \"http://localhost:" + port + "\"}"))
+                .build();
+            response = newClient.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() != 202) {
+                throw new IllegalStateException("Server has not accepted start");
+            }
+        }
     }
     public final String[] ArrayResponse(HttpExchange t) throws IOException, InterruptedException {
         int status;
