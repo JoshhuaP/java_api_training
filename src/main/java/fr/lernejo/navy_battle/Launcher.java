@@ -19,9 +19,6 @@ public class Launcher {
             server.createServer();
             final PostHandlerRequest postHandlerRequest = new PostHandlerRequest(port, url);
             postHandlerRequest.SendRequest();
-        }
-        else {
-            System.out.println("Il faut ajouter au moins un paramètre et pas plus de deux");
-        }
+        } else {System.out.println("Il faut ajouter au moins un paramètre et pas plus de deux");}
     }
 }
