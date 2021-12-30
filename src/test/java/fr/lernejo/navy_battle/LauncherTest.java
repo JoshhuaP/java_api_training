@@ -1,6 +1,4 @@
 package fr.lernejo.navy_battle;
-
-import fr.lernejo.navy_battle.Server.WebServer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

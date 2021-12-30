@@ -4,12 +4,10 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
-
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class JsonParserTest {
     JsonParser jsonParser;
@@ -41,7 +39,7 @@ public class JsonParserTest {
     }
 
     @org.junit.jupiter.api.Test
-    public final void testParser() {
+    public final void test_Parser_jsonSchema() {
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("StratingGameTest.json");
         JSONObject requestJson = new JSONObject(new JSONTokener(is));
         Assertions.assertNotNull(jsonParser.jsonSchema);
